@@ -11,9 +11,20 @@
     height:3em;
     line-height:3em;
     padding-right:1em;
-    margin-bottom:2px;
+    margin-bottom:5px;
+    margin-left:22em;
     text-align:right;
   }
+  div.label{
+    height:3em;
+    line-height:3em;
+    padding-right:1em;
+    margin-bottom:2px;
+    float:left;
+    width:20em;
+    text-align:right;
+  }
+
 </style>
 <head>
   <meta charset="utf-8">
@@ -23,14 +34,23 @@
     	d3.select("body")
         .append("div")
           .attr("class","chart")
-        .selectAll(".bar")
+        .selectAll("div.line")
         .data(data)
         .enter()
+        .append("div")
+          .attr("class", "line")
+
+      d3.selectAll("div.line")
+        .append("div")
+          .attr("class", "label")
+          .text(function(d) { return d.Film })
+
+      d3.selectAll("div.line")
         .append("div")
           .attr("class", "bar")
           .style("width", function(d) { return 10*d.RTRating + "px"} )
           .style("outline", "1px solid black")
-          .text(function(d) { return d.Film + " - " + d.RTRating})
+          .text(function(d) { return d.RTRating})
     }
   </script>
 </head>
