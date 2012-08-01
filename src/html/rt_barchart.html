@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<style>
+  div.chart{
+    font-family:sans-serif;
+    font-size:0.7em;
+  }
+  div.bar{
+    background-color:DarkRed;
+    color:white;
+    height:3em;
+    line-height:3em;
+    padding-right:1em;
+    margin-bottom:2px;
+    text-align:right;
+  }
+</style>
+<head>
+  <meta charset="utf-8">
+  <script src="../../lib/d3/d3.v2.js"></script>
+  <script>
+    function draw(data) {
+    	d3.select("body")
+        .append("div")
+          .attr("class","chart")
+        .selectAll(".bar")
+        .data(data)
+        .enter()
+        .append("div")
+          .attr("class", "bar")
+          .style("width", function(d) { return 10*d.RTRating + "px"} )
+          .style("outline", "1px solid black")
+          .text(function(d) { return d.Film + " - " + d.RTRating})
+    }
+  </script>
+</head>
+<body>
+  <script>
+    d3.json("../../data/moviedata_20120802.json", draw);
+  </script>
+</body>
+</html>
